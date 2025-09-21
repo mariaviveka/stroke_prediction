@@ -31,18 +31,18 @@ st.subheader("Patient Details")
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    age = st.number_input("Age", min_value=0, max_value=120, value=55, step=1)
+    age = st.number_input("Age", min_value=18, max_value=90, value=55, step=1)
     gender = st.selectbox("Gender", ["Male", "Female", "Other"])
     hypertension = st.selectbox("Hypertension", ["No", "Yes"])
 
 with col2:
-    avg_glucose = st.number_input("Avg. Glucose Level (mg/dL)", min_value=40.0, max_value=400.0, value=110.0, step=0.1)
-    bmi = st.number_input("Body Mass Index (BMI)", min_value=10.0, max_value=60.0, value=26.5, step=0.1)
+    avg_glucose = st.number_input("Avg. Glucose Level (mg/dL)", min_value=60.0, max_value=200.0, value=110.0, step=0.1)
+    bmi = st.number_input("Body Mass Index (BMI)", min_value=15.0, max_value=40.0, value=26.5, step=0.1)
     heart_disease = st.selectbox("Heart Disease", ["No", "Yes"])
 
 with col3:
-    systolic_bp = st.number_input("Systolic BP (mmHg)", min_value=70, max_value=250, value=126, step=1)
-    diastolic_bp = st.number_input("Diastolic BP (mmHg)", min_value=40, max_value=150, value=80, step=1)
+    systolic_bp = st.number_input("Systolic BP (mmHg)", min_value=90, max_value=180, value=126, step=1)
+    diastolic_bp = st.number_input("Diastolic BP (mmHg)", min_value=60, max_value=110, value=80, step=1)
     smoking_status = st.selectbox("Smoking Status", ["Formerly smoked", "Never smoked", "Smokes", "Unknown"])
 
 family_history = st.selectbox("Family History of Stroke", ["No", "Yes"])
@@ -57,8 +57,8 @@ selected_symptoms = st.multiselect("Symptoms (select all that apply)", symptom_o
 
 # Stress Levels numeric with tooltip
 stress_levels = st.slider(
-    "Stress Level (1-10)",
-    min_value=1, max_value=10, value=5,
+    "Stress Level (0-10)",
+    min_value=0, max_value=10, value=5,
     help="Stress Levels were numeric in training (1–10)."
 )
 
@@ -124,9 +124,9 @@ else:
             pred_label = 1 if prob >= 0.5 else 0
 
             if pred_label == 1:
-                st.error(f"⚠️ High Risk of Stroke (probability = {prob:.2f})")
+                st.error(f"⚠️ High Risk of Stroke")
             else:
-                st.success(f"✅ Low Risk of Stroke (probability = {prob:.2f})")
+                st.success(f"✅ Low Risk of Stroke")
 
         except Exception:
             st.error("Error during prediction — see details below.")
